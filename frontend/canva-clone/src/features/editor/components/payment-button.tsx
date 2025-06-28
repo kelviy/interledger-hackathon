@@ -15,7 +15,12 @@ import {useState, useEffect} from "react"
 
 import { useSessionEditor } from "./SessionContext";
 
-export default function PaymentButton() {
+type PaymentButtonProp ={
+    callBackStart: ()=> void;
+    callBackEnd: ()=>void;
+}
+
+export default function PaymentButton({callBackStart, callBackEnd}:PaymentButtonProp) {
   let sessionID="0";
   const { shouldBlock, triggerPaywall } = usePaywall();
   const router = useRouter();
@@ -29,23 +34,23 @@ export default function PaymentButton() {
   } = useGetTemplates({ page: "1", limit: "4" });
   
     const [cumulatedAmount, setCumulatedAmount] = useState(0)
-    const handlePaymentStart = async() => {
-        try{
-            // await axios.post("/api/payment/start", {sessionID})
+    // const handlePaymentStart = async() => {
+    //     try{
+    //         // await axios.post("/api/payment/start", {sessionID})
             
-            setIsPremium(true)
-        }catch (error){
-            console.error("Can't start")
-        }
-    }
-    const handlePaymentEnd = async() => {
-        try{
-            // await axios.post("/api/paymnet/end", {sessionID})
-            setIsPremium(false)
-        }catch(error){
-            console.error("Can't finish")
-        }
-    }
+    //         setIsPremium(true)
+    //     }catch (error){
+    //         console.error("Can't start")
+    //     }
+    // }
+    // const handlePaymentEnd = async() => {
+    //     try{
+    //         // await axios.post("/api/paymnet/end", {sessionID})
+    //         setIsPremium(false)
+    //     }catch(error){
+    //         console.error("Can't finish")
+    //     }
+    // }
 
   const onClick = (template: ResponseType["data"][0]) => {
     if (template.isPro && shouldBlock) {
@@ -81,11 +86,11 @@ export default function PaymentButton() {
   return (
     <div className="flex flex-row width-full space-x-8">
       {!isPremium ? 
-      <Button variant={"secondary"} onClick={handlePaymentStart} >
+      <Button variant={"secondary"} onClick={callBackStart} >
          <Rocket className="text-red-600"></Rocket>
          <p className="pl-2 font-medium">Start</p>  
       </Button> :
-      <Button variant={"secondary"} onClick={handlePaymentEnd}>
+      <Button variant={"secondary"} onClick={callBackEnd}>
          <p className="pr-2 font-medium">Stop</p>  
          <Rocket className="text-green-600"></Rocket>
       </Button>

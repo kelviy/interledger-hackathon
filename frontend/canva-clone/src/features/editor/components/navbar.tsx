@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { useSessionEditor } from "./SessionContext";
 import { CiFileOn } from "react-icons/ci";
 import { BsCloudCheck, BsCloudSlash } from "react-icons/bs";
@@ -69,10 +70,43 @@ export const Navbar = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showBudgetOverlay, setShowBudgetOverlay] = useState(false);
   const [budgetAmountAvailable, setBudgetAmountAvailable] = useState(1);
-
+  const [budgetDepleted, setBudgetDepleted] = useState(false);
+  const {isPremium, setIsPremium} = useSessionEditor();
   const toggleEdit = () => setEditing((prev) => !prev);
   const increment = () => setAmount((prev) => prev + 1);
   const decrement = () => setAmount((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const handlePaymentStart = async() => {
+        try{
+            // await axios.post("/api/payment/start", {sessionID})
+            if (budgetAmountAvailable > 0)
+              setIsPremium(true)
+            else{
+              setBudgetDepleted(true);
+            }
+        }catch (error){
+            console.error("Can't start")
+        }
+    }
+    const handlePaymentEnd = async() => {
+        try{
+            // await axios.post("/api/paymnet/end", {sessionID})
+            setIsPremium(false)
+        }catch(error){
+            console.error("Can't finish")
+        }
+    }
+  // track budget amount
+
+  useEffect(() => {
+    if (budgetAmountAvailable <= 0) {
+      handlePaymentEnd();
+      if (isPremium)
+        setBudgetDepleted(true)
+  } else{
+      setBudgetDepleted(false);
+  }
+}, [budgetAmountAvailable]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -212,9 +246,9 @@ export const Navbar = ({
             <DropdownMenu modal={true} open={dropdownOpen} onOpenChange={setDropdownOpen}>
               <DropdownMenuTrigger asChild>
                 <Button size="sm" variant="ghost">
-                  <DollarSign className="size-4 mr-2" />
+                  <DollarSign className="size-4" />
                   Set Budget
-                  <ChevronDown className="size-4 ml-2" />
+                  <ChevronDown className="size-4 ml-3" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-80 p-4" onEscapeKeyDown={(e) => e.preventDefault()} onInteractOutside={(e) => e.preventDefault()}>
@@ -325,7 +359,7 @@ export const Navbar = ({
               </DropdownMenuContent>
             </DropdownMenu>
           <Timer></Timer>
-           <PaymentButton>
+           <PaymentButton callBackStart = {handlePaymentStart} callBackEnd={handlePaymentEnd}>
           </PaymentButton>
             {/* Demo button to test budget depletion - moved to navbar */}
             <Button 
@@ -342,7 +376,7 @@ export const Navbar = ({
       </nav>
 
       {/* Budget Depleted Overlay */}
-      {budgetAmountAvailable === 0 && (
+      {budgetDepleted && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <Card className="max-w-sm w-full mx-4 flex flex-col items-center p-6 text-center">
             <CardHeader>
@@ -360,7 +394,7 @@ export const Navbar = ({
               <Button 
                 variant="outline" 
                 className="w-full"
-                onClick={() => setBudgetAmountAvailable(1)} // Set to 1 to remove overlay
+                onClick={() => {setBudgetAmountAvailable(0); setBudgetDepleted(false)}} // Set to 1 to remove overlay
               >
                 Continue Free Version
               </Button>
