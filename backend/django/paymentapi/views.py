@@ -6,6 +6,7 @@ from .models import Session, Payment, Product, Grant
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 import requests
+from django.db.models import Sum
 import json
 
 
@@ -123,6 +124,10 @@ def micropayment(request):
     print("Cotinue uri")
     print(session.pk, session.grant.continue_uri)
 
+    payment = Payment(session=session, amount=session.product.rate, time=timezone.now())
+    payment.save()
+
+    json['total_amount'] = session.payment_set.aggregate(total=Sum('amount')) 
     return JsonResponse(json)
 
 # --- helper functions ---
@@ -138,10 +143,6 @@ def makeMicroPayment(session):
     manage_url = session.grant.manage_url
     receiver_wallet = "$ilp.interledger-test.dev/custom"
     amount = session.product.rate
-
-    ## hardcoded access
-    # access_token = '1149E4164D0F358C2804'
-  
 
     url = "http://localhost:3001/api/create-payment/"
     payload = {

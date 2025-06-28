@@ -1,0 +1,5 @@
+Watching for file changes with StatReloader
+Not Found: /
+[28/Jun/2025 22:12:11] "GET / HTTP/1.1" 404 2925
+Not Found: /favicon.ico
+[28/Jun/2025 22:12:11,905] - Broken pipe from ('127.0.0.1', 54352)

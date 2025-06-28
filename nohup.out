@@ -1,0 +1,40 @@
+CommandError: "./logs/django.log" is not a valid port number or address:port pair.
+
+> open-payments-express-backend@1.0.0 dev
+> nodemon --watch './**/*.ts' --exec ts-node server.ts ./logs/payments.log
+
+
+> the-canvas@0.1.0 dev
+> next dev ./logs/canva-clone.log
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): **/*.ts[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node server.ts ./logs/payments.log`[39m
+ ⨯ Invalid project directory provided, no such directory: /Users/mistycloud/Projects/interledger-hackathon/frontend/canva-clone/logs/canva-clone.log
+🚀 Express server running on http://localhost:3001
+🏥 Health check: http://localhost:3001/api/health
+
+📋 Available endpoints:
+  POST   /api/create-incoming-payment  - Create incoming payment resource on receiver account
+  POST   /api/create-quote             - Create quote resource on sender account
+  POST   /api/outgoing-payment-auth    - Get continuation grant for an outgoing payment on the sender's account
+  POST   /api/outgoing-payment         - Create outgoing payment resource on sender's account
+  POST   /api/subscription-payment     - Create an outgoing payment from an existing authorized recurring payment
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+Emitted 'error' event on ReadStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -5,
+  code: 'EIO',
+  syscall: 'read'
+}
+
+Node.js v22.11.0

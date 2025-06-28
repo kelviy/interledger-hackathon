@@ -1,0 +1,18 @@
+
+> open-payments-express-backend@1.0.0 dev
+> nodemon --watch './**/*.ts' --exec ts-node server.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): **/*.ts[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node server.ts`[39m
+🚀 Express server running on http://localhost:3001
+🏥 Health check: http://localhost:3001/api/health
+
+📋 Available endpoints:
+  POST   /api/create-incoming-payment  - Create incoming payment resource on receiver account
+  POST   /api/create-quote             - Create quote resource on sender account
+  POST   /api/outgoing-payment-auth    - Get continuation grant for an outgoing payment on the sender's account
+  POST   /api/outgoing-payment         - Create outgoing payment resource on sender's account
+  POST   /api/subscription-payment     - Create an outgoing payment from an existing authorized recurring payment

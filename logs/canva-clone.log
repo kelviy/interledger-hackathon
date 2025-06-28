@@ -1,0 +1,28 @@
+
+> the-canvas@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.4
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1727ms
+ ✓ Compiled /src/middleware in 451ms (423 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1641ms (1424 modules)
+ GET / 200 in 2784ms
+ ✓ Compiled in 1117ms (506 modules)
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 682ms (1187 modules)
+ ✓ Compiled (1189 modules)
+ GET /api/auth/session 200 in 2770ms
+ GET /api/auth/session 200 in 19ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/subscriptions/current 200 in 3347ms
+ GET /api/projects/templates?page=1&limit=4 200 in 3351ms
+ GET /api/projects?page=1&limit=5 200 in 3677ms
+ GET /api/auth/session 200 in 10ms
+ GET /api/auth/session 200 in 9ms
+ GET /api/auth/session 200 in 27ms
+[?25h
