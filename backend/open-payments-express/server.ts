@@ -125,22 +125,22 @@ app.post("/api/create-payment", async (req, res): Promise<any> => {
     sender_wallet,
     quote_id,
   } = req.body;
-  // if (
-  //   !interactRef ||
-  //   !continue_access_token ||
-  //   !continueuri ||
-  //   !amount ||
-  //   !sender_wallet ||
-  //   !quote_id
-  // ) {
-  //   console.log(interactRef);
-  //   console.log(continue_access_token);
-  //   console.log(continueuri);
-  //   console.log(amount);
-  //   console.log(sender_wallet);
-  //   console.log(quote_id);
-  //   return res.status(400).json({ error: "Missing required fields" });
-  // }
+  if (
+    !interactRef ||
+    !continue_access_token ||
+    !continueuri ||
+    !amount ||
+    !sender_wallet ||
+    !quote_id
+  ) {
+    console.log(interactRef);
+    console.log(continue_access_token);
+    console.log(continueuri);
+    console.log(amount);
+    console.log(sender_wallet);
+    console.log(quote_id);
+    return res.status(400).json({ error: "Missing required fields" });
+  }
 
   // Re-init the client
   const client = await getAuthenticatedClient();

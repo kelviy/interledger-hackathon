@@ -199,7 +199,7 @@ export async function createOutgoingPaymentPendingGrant(
 
   const dateNow = new Date().toISOString();
   const debitAmount = input.debitAmount;
-  const receiveAmount = input.receiveAmount;
+  // const receiveAmount = input.receiveAmount;
 
   // TODO: Request outgoing payment pending grant
 
@@ -215,7 +215,7 @@ export async function createOutgoingPaymentPendingGrant(
             type: "outgoing-payment",
             actions: ["list", "list-all", "read", "read-all", "create"],
             limits: {
-              receiveAmount,
+              // receiveAmount,
               debitAmount,
             },
           },
@@ -290,15 +290,15 @@ export async function createOutgoingPayment(
     // hardcoded access_token
     {
       url: new URL(walletAddress).origin,
-      // accessToken: grant.access_token.value,
-      accessToken: access_token,
+      accessToken: grant.access_token.value,
+      // accessToken: access_token,
     },
     {
       walletAddress: walletAddress,
       incomingPayment: input.quoteId,
       // quoteId: input.quoteId,
       debitAmount: {
-        value: "1",
+        value: "5",
         assetCode: "EUR",
         assetScale: 2,
       },

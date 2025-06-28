@@ -104,8 +104,8 @@ def micropayment(request):
     json["session_id"] = session.pk
 
 
-    payment_info = makeMicroPayment(session)
-    print(payment_info)
+    # payment_info = makeMicroPayment(session)
+    # print(payment_info)
     session.end_time = timezone.now()
     session.save()
 
@@ -123,7 +123,7 @@ def makeMicroPayment(session):
 
     ## hardcoded access
     access_token = '1149E4164D0F358C2804'
-    manage_url = https://auth.interledger-test.dev/token/f1e055e9-3b7f-4201-864f-0d1b30ac107d<D-z>
+  
 
     url = "http://localhost:3001/api/create-payment/"
     payload = {
