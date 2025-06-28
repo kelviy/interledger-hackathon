@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { Loader, TriangleAlert } from "lucide-react";
-
+import { SessionProvider } from "@/features/editor/components/SessionContext";
 import { useGetProject } from "@/features/projects/api/use-get-project";
 
 import { Editor } from "@/features/editor/components/editor";
 import { Button } from "@/components/ui/button";
+
+
 
 interface EditorProjectIdPageProps {
   params: {
@@ -40,14 +42,18 @@ const EditorProjectIdPage = ({
         </p>
         <Button asChild variant="secondary">
           <Link href="/">
-            Back to Home
+            Hi help
           </Link>
         </Button>
       </div>
     );
   }
 
-  return <Editor initialData={data} />
+  return (
+  <SessionProvider>
+    <Editor initialData={data} />
+  </SessionProvider>
+)
 };
- 
+
 export default EditorProjectIdPage;
