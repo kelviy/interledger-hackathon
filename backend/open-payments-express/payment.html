@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payments Playground</title>
+    <link rel="stylesheet" href="/payments.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-panel">
+        <div class="header">
+          <h1>Make a Payment</h1>
+          <p>Make a payment by entering details below.</p>
+        </div>
+      </div>
+      <div class="bottom-panel">
+        <div class="form-group">
+          <form action="/api/payment" method="post" id="inputForm">
+            <label for="method">Enter your wallet address</label>
+            <input
+              type="text"
+              id="source-wallet"
+              name="senderWalletAddress"
+              required
+            />
+
+            <label for="method">Enter recipient wallet address</label>
+            <input
+              type="text"
+              id="destination-wallet"
+              name="receiverWalletAddress"
+              required
+            />
+
+            <label for="method">Enter transfer amount</label>
+            <input type="number" id="amount" name="amount" required />
+
+            <button type="submit" class="btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>

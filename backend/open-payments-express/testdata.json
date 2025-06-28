@@ -1,0 +1,102 @@
+// incomingPayment
+{
+   "senderWalletAddress":"$ilp.interledger-test.dev/csc",
+   "receiverWalletAddress":"$ilp.interledger-test.dev/custom",
+   "amount":"100"
+}
+
+//response
+{
+   "data":{
+      "id":"https://ilp.interledger-test.dev/incoming-payments/1fd05255-4b91-448d-a052-da67507652c8",
+      "walletAddress":"https://ilp.interledger-test.dev/custom",
+      "incomingAmount":{
+         "value":"100",
+         "assetCode":"ZAR",
+         "assetScale":2
+      },
+      "receivedAmount":{
+         "value":"0",
+         "assetCode":"ZAR",
+         "assetScale":2
+      },
+      "completed":false,
+      "createdAt":"2025-06-26T07:59:40.817Z",
+      "updatedAt":"2025-06-26T07:59:40.817Z",
+      "expiresAt":"2025-06-26T08:09:40.625Z",
+      "methods":[
+         {
+            "type":"ilp",
+            "ilpAddress":"test.net.UiUN56zxkyaLNJLAv4sqbC73VJR2rvGeg1El0yq9nKWsKmtowS4ain84yHXSXucGZBawknfuJFxARKc53DlTWWEvOGIo8RU",
+            "sharedSecret":"FhxYK0VTjBIWnzRHITUVFVG31MfonQChoCrzbYGrEgs"
+         }
+      ]
+   }
+}
+//Response
+{
+   "data":{
+      "id":"https://ilp.interledger-test.dev/quotes/74b857dc-7a2b-4b12-b3cf-c93e5757667b",
+      "walletAddress":"https://ilp.interledger-test.dev/csc",
+      "receiveAmount":{
+         "value":"100",
+         "assetCode":"ZAR",
+         "assetScale":2
+      },
+      "debitAmount":{
+         "value":"5",
+         "assetCode":"EUR",
+         "assetScale":2
+      },
+      "receiver":"https://ilp.interledger-test.dev/incoming-payments/d2e63506-3a4a-4ac9-8764-aa0f5e93e068",
+      "expiresAt":"2025-06-25T14:32:49.152Z",
+      "createdAt":"2025-06-25T14:27:49.153Z",
+      "method":"ilp"
+   }
+}
+
+//Create outgoing auth
+{
+   "senderWalletAddress":"$ilp.interledger-test.dev/csc",
+   "quoteId":"https://ilp.interledger-test.dev/quotes/74b857dc-7a2b-4b12-b3cf-c93e5757667b",
+   "receiveAmount":{
+      "value":"",
+      "assetCode":"",
+      "assetScale":0
+   },
+   "debitAmount":{
+      "value":"5",
+      "assetCode":"EUR",
+      "assetScale":2
+   },
+   "type":"once_off",
+   "payments":"1",
+   "redirectUrl":"http://localhost:3001/",
+   "duration":"PT10M"
+}
+
+//Response
+{
+   "data":{
+      "interact":{
+         "redirect":"https://auth.interledger-test.dev/interact/8fa46266-2510-4d89-978d-0129c3b62399/305592387F5A9D37?clientName=europointer&clientUri=https%3A%2F%2Filp.interledger-test.dev%2Fcsc",
+         "finish":"305592387F5A9D37"
+      },
+      "continue":{
+         "access_token":{
+            "value":"3F1FA7AB8406968A17C2"
+         },
+         "uri":"https://auth.interledger-test.dev/continue/0ea8aba2-61e5-4c4a-ac2e-fa4c849c33bc",
+         "wait":1
+      }
+   }
+}
+
+
+{
+   "senderWalletAddress":"$ilp.interledger-test.dev/csc",
+   "interactRef":"5643b23d-4f88-4509-98e8-1b840c6fd35a",
+   "continueAccessToken":"D373BEBF0D1D793D22C0",
+   "continueUri":"https://auth.interledger-test.dev/continue/5f54c86e-cdb9-466a-b4ed-69939764d6a1",
+   "quoteId":"https://auth.interledger-test.dev/continue/5f54c86e-cdb9-466a-b4ed-69939764d6a1""
+}

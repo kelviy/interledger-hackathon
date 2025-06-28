@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Payments Playground</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="json-editor.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-panel">
+        <div class="header">
+          <h1>Open Payments Playground</h1>
+          <p>Interact with the Open Payments API</p>
+        </div>
+
+        <form id="inputForm">
+          <div class="form-group">
+            <label for="method">HTTP Method</label>
+            <select style="padding: 8px" id="method" class="method-select">
+              <option value="GET">GET</option>
+              <option selected value="POST">POST</option>
+              <option value="PUT">PUT</option>
+              <option value="DELETE">DELETE</option>
+              <option value="PATCH">PATCH</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="url">API Endpoint URL</label>
+            <input
+              type="url"
+              id="url"
+              placeholder="http://localhost:3000/api/create-incoming-payment"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Templates</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input
+                  id="none"
+                  type="radio"
+                  name="templateType"
+                  value="none"
+                  checked
+                />
+                <span class="radio-custom"></span>
+                None
+              </label>
+
+              <label class="radio-option">
+                <input
+                  id="incoming_payment"
+                  type="radio"
+                  name="templateType"
+                  value="incoming_payment"
+                />
+                <span class="radio-custom"></span>
+                Incoming Payment
+              </label>
+
+              <label class="radio-option">
+                <input
+                  id="quote"
+                  type="radio"
+                  name="templateType"
+                  value="quote"
+                />
+                <span class="radio-custom"></span>
+                Quote
+              </label>
+
+              <label class="radio-option">
+                <input
+                  id="outgoing_payment_auth"
+                  type="radio"
+                  name="templateType"
+                  value="outgoing_payment_auth"
+                />
+                <span class="radio-custom"></span>
+                Outgoing Payment Auth
+              </label>
+
+              <label class="radio-option">
+                <input
+                  id="outgoing_payment"
+                  type="radio"
+                  name="templateType"
+                  value="outgoing_payment"
+                />
+                <span class="radio-custom"></span>
+                Outgoing Payment
+              </label>
+
+              <label class="radio-option">
+                <input
+                  id="subscription_payment"
+                  type="radio"
+                  name="templateType"
+                  value="subscription_payment"
+                />
+                <span class="radio-custom"></span>
+                Subscription Payment
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="bodyGroup">
+            <label
+              >Request Body (JSON)
+              <json-editor
+                class="json-container"
+                id="body-json"
+                value=""
+                indent="3"
+              ></json-editor>
+            </label>
+          </div>
+
+          <button type="submit" class="btn">Send Request</button>
+        </form>
+      </div>
+
+      <div class="right-panel">
+        <!-- history section -->
+        <div class="response-panel">
+          <div style="justify-content: space-between" class="response-header">
+            <h2>
+              Response History
+              <span id="historyCount" class="history-badge">0</span>
+            </h2>
+            <div>
+              <button id="clearHistoryBtn" class="history-clear-btn">
+                Clear All
+              </button>
+            </div>
+          </div>
+          <div id="historyList" class="history-list">
+            <div class="panel-empty">No request history yet</div>
+          </div>
+        </div>
+
+        <!-- respone section -->
+        <div class="response-panel">
+          <div class="response-header">
+            <h2>Response</h2>
+          </div>
+          <div style="user-select: none" id="responseContainer">
+            <div id="statusInfo" class="panel-empty">
+              Fill out the form on the left and click "Send Request"
+            </div>
+            <json-editor
+              class="json-container"
+              id="response-json"
+              value=""
+              contenteditable="false"
+              indent="3"
+            ></json-editor>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
