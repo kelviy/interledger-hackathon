@@ -1,6 +1,12 @@
 # Running
 This project consists of 3 servers. One Django and one express server for the backend. One next.js server for the frontend.
 
+**Remember to activate python environment variable first**.
+- Recommended tool is `uv` and to add all neccesary dependencies use `uv sync`
+- Remember to all npm install at the directories of the express and next.js servers
+
+
+
 **To run servers:**
 ```bash
 source start_server.sh
