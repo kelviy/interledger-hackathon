@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Loader, TriangleAlert } from "lucide-react";
-
+import { SessionProvider } from "@/features/editor/components/SessionContext";
 import { useGetProject } from "@/features/projects/api/use-get-project";
 
 import { Editor } from "@/features/editor/components/editor";
@@ -46,8 +46,10 @@ const EditorProjectIdPage = ({
       </div>
     );
   }
-
-  return <Editor initialData={data} />
+  return(
+<SessionProvider>
+<Editor initialData={data} />
+</SessionProvider>)
 };
- 
+
 export default EditorProjectIdPage;
