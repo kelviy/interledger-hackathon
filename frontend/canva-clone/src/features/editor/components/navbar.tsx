@@ -29,6 +29,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import PaymentButton from "./payment-button";
+import Timer from "./timer";
+
 interface NavbarProps {
   id: string;
   editor: Editor | undefined;
@@ -68,6 +71,8 @@ export const Navbar = ({
       }
     },
   });
+
+  // Start stop logic
 
   return (
     <nav className="w-full flex items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px]">
@@ -152,6 +157,9 @@ export const Navbar = ({
           </div>
         )}
         <div className="ml-auto flex items-center gap-x-4">
+          <Timer started={true} paused={false}></Timer>
+           <PaymentButton>
+          </PaymentButton>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
               <Button size="sm" variant="ghost">
@@ -211,8 +219,14 @@ export const Navbar = ({
             </DropdownMenuContent>
           </DropdownMenu>
           <UserButton />
+         
+          
         </div>
       </div>
     </nav>
   );
 };
+
+
+
+
