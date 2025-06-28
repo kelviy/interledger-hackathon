@@ -58,10 +58,14 @@ def request_session(request):
     response = requests.post(url, data=payload)
     response_data = response.json()
 
-    grant = Grant(continue_uri=response_data["continueUri"], continue_access=response_data["continueAccessToken"], quote_id=response_data["incoming_payment_id"])
+    grant = Grant(incomming_payment_id=response_data["incoming_payment_id"], 
+                  debit_amount=response_data["debit_amount"],
+                  continue_uri=response_data["continueUri"],
+                  continue_access=response_data["continueAccessToken"],
+                  quote_id=response_data["quoteId"])
+    
     grant.session = session 
     grant.save()
-
 
     
     json_response["redirect_url"] = response_data["interact_redirect"]
@@ -104,10 +108,20 @@ def micropayment(request):
     json["session_id"] = session.pk
 
 
-    # payment_info = makeMicroPayment(session)
-    # print(payment_info)
+    payment_info = makeMicroPayment(session)
+    print("old access token:")
+    print(session.grant.token)
+    print("new access token")
+    print(payment_info['token'])
+    grant = session.grant
+    grant.token = payment_info["token"]
+    grant.continue_uri = ""
+    grant.manage_url = payment_info["manage_url"]
     session.end_time = timezone.now()
     session.save()
+    grant.save()
+    print("Cotinue uri")
+    print(session.pk, session.grant.continue_uri)
 
     return JsonResponse(json)
 
@@ -115,24 +129,32 @@ def micropayment(request):
 
 def makeMicroPayment(session):
 
-    amount = session.product.rate
+    debit_amount = session.grant.debit_amount
     interactRef = session.grant.token
     continueuri = session.grant.continue_uri
     continue_access_token = session.grant.continue_access
+    incomming_payment_url = session.grant.incomming_payment_id
     quote_id = session.grant.quote_id
+    manage_url = session.grant.manage_url
+    receiver_wallet = "$ilp.interledger-test.dev/custom"
+    amount = session.product.rate
 
     ## hardcoded access
-    access_token = '1149E4164D0F358C2804'
+    # access_token = '1149E4164D0F358C2804'
   
 
     url = "http://localhost:3001/api/create-payment/"
     payload = {
         'sender_wallet': "https://ilp.interledger-test.dev/csc",
         'interactRef': interactRef,
-        'continue_access_token': continue_access_token,
-        'continueuri': continueuri,
-        'amount': amount,
-        'quote_id': quote_id
+        'continueAccessToken': continue_access_token,
+        'continueUri': continueuri,
+        'debit_amount': debit_amount,
+        'incommingPaymentUrl': incomming_payment_url,
+        'quote_id': quote_id,
+        'manage_url': manage_url,
+        'receiver_wallet': receiver_wallet,
+        'amount': str(amount),
     }
 
     response = requests.post(url, json=payload)

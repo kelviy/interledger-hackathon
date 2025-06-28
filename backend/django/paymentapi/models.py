@@ -26,3 +26,7 @@ class Grant(models.Model):
     continue_uri = models.CharField(max_length=30)
     continue_access = models.CharField(max_length=30)
     quote_id = models.CharField(max_length=30)
+    incomming_payment_id = models.CharField(max_length=30)
+    debit_amount = models.JSONField()
+    manage_url = models.CharField(max_length=30)
+

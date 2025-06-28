@@ -60,6 +60,7 @@ app.get("/payment", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "/payment.html"));
 });
 
+// get grant payment
 app.post("/api/payment", async (req: Request, res: Response): Promise<any> => {
   const { senderWalletAddress, receiverWalletAddress, amount } = req.body;
   if (!senderWalletAddress || !receiverWalletAddress || !amount) {
@@ -100,47 +101,57 @@ app.post("/api/payment", async (req: Request, res: Response): Promise<any> => {
   }
 
   // 5) Store everything you’ll need in the callback
-  req.session.paymentFlow = {
-    senderWalletAddress,
-    quoteId: quote.id,
-    continueAccessToken: auth.continue.access_token.value,
-    continueUri: auth.continue.uri,
-  };
+  // req.session.paymentFlow = {
+  //   senderWalletAddress,
+  //   quoteId: quote.id,
+  //   continueAccessToken: auth.continue.access_token.value,
+  //   continueUri: auth.continue.uri,
+  // };
 
   return res.json({
     interact_redirect: auth.interact.redirect,
-    quoteId: quote.id,
+    debit_amount: quote.debitAmount,
     incoming_payment_id: incoming.id,
     continueAccessToken: auth.continue.access_token.value,
     continueUri: auth.continue.uri,
+    quoteId: quote.id,
   });
 });
 
+// create payment
 app.post("/api/create-payment", async (req, res): Promise<any> => {
   const {
     interactRef,
-    continue_access_token,
-    continueuri,
-    amount,
+    debit_amount,
     sender_wallet,
+    incommingPaymentUrl,
+    continueAccessToken,
+    continueUri,
     quote_id,
+    manage_url,
+    receiver_wallet,
+    amount,
   } = req.body;
   if (
     !interactRef ||
-    !continue_access_token ||
-    !continueuri ||
-    !amount ||
+    !debit_amount ||
     !sender_wallet ||
+    !incommingPaymentUrl ||
+    // !continueAccessToken ||
+    // !continueUri ||
     !quote_id
   ) {
-    console.log(interactRef);
-    console.log(continue_access_token);
-    console.log(continueuri);
-    console.log(amount);
-    console.log(sender_wallet);
-    console.log(quote_id);
     return res.status(400).json({ error: "Missing required fields" });
   }
+    console.log(interactRef);
+    console.log(debit_amount);
+    console.log(sender_wallet);
+    console.log(incommingPaymentUrl);
+    console.log(continueAccessToken);
+    console.log(continueUri);
+    console.log(quote_id);
+    console.log(manage_url);
+    console.log(receiver_wallet);
 
   // Re-init the client
   const client = await getAuthenticatedClient();
@@ -153,17 +164,22 @@ app.post("/api/create-payment", async (req, res): Promise<any> => {
     client,
     {
       senderWalletAddress: sender_wallet,
-      continueAccessToken: continue_access_token,
       interactRef: interactRef, // from the auth server callback
-      continueUri: continueuri,
-      quoteId: quote_id,
+      incommingPaymentUrl: incommingPaymentUrl, // from the auth server callback
+      debitAmount: debit_amount, // from the auth server callback
+      continueAccessToken: continueAccessToken, // from the auth server callback
+      continueUri: continueUri, // from the auth server callback
+      quote_id: quote_id, // from the auth server callback
+      manageUrl: manage_url,
+      receiver_wallet,
+      amount,
     },
     // you can re-fetch sendDetails or stash it in the session if you like
-    (await getWalletAddressInfo(client, sender_wallet)).walletAddressDetails,
+    // (await getWalletAddressInfo(client, sender_wallet)).walletAddressDetails,
   );
 
   // Done!  You can now show them the result.
-  res.json({ data: outgoing });
+  res.json({ token: outgoing[1], manage_url: outgoing[2], payment_details: outgoing[0]});
 });
 
 // Health check endpoint
@@ -318,13 +334,11 @@ app.post(
   async (req: Request, res: Response): Promise<any> => {
     const {
       senderWalletAddress,
-      continueAccessToken,
-      quoteId,
-      interactRef,
-      continueUri,
+      incommingPaymentUrl,
+      debitAmount,
     } = req.body;
 
-    if (!senderWalletAddress || !quoteId) {
+    if (!senderWalletAddress || !incommingPaymentUrl || !debitAmount) {
       return res.status(400).json({
         error: "Validation failed",
         message: "Please fill in all the required fields",
@@ -336,23 +350,14 @@ app.post(
       // Initialize Open Payments client
       const client = await getAuthenticatedClient();
 
-      // get wallet details
-      const { walletAddressDetails } = await getWalletAddressInfo(
-        client!,
-        senderWalletAddress,
-      );
-
       // create outgoing payment resource
       const outgoingPaymentResponse = await createOutgoingPayment(
         client!,
         {
           senderWalletAddress,
-          continueAccessToken,
-          quoteId,
-          interactRef,
-          continueUri,
+          incommingPaymentUrl,
+          debitAmount,
         },
-        senderWalletAddress,
       );
 
       return res.status(200).json({ data: outgoingPaymentResponse });

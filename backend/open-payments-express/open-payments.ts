@@ -9,6 +9,7 @@ import {
 } from "@interledger/open-payments";
 import { randomUUID } from "crypto";
 import { type components } from "@interledger/open-payments/dist/openapi/generated/auth-server-types";
+import { access } from "fs";
 
 dotenv.config({ path: ".env" });
 
@@ -202,6 +203,7 @@ export async function createOutgoingPaymentPendingGrant(
   // const receiveAmount = input.receiveAmount;
 
   // TODO: Request outgoing payment pending grant
+  // let interval = `R100/${dateNow}/P1D`; // 1 day interval
 
   const grant = await client.grant.request(
     {
@@ -215,8 +217,13 @@ export async function createOutgoingPaymentPendingGrant(
             type: "outgoing-payment",
             actions: ["list", "list-all", "read", "read-all", "create"],
             limits: {
+              // interval: interval,
               // receiveAmount,
-              debitAmount,
+              debitAmount:{
+                "value":"100000",
+                "assetCode":"EUR",
+                "assetScale":2
+              },
             },
           },
         ],
@@ -252,63 +259,96 @@ export async function createOutgoingPaymentPendingGrant(
 export async function createOutgoingPayment(
   client: AuthenticatedClient,
   input: any,
-  walletAddressDetails: WalletAddress,
+  // walletAddressDetails: WalletAddress,
 ) {
   let walletAddress = input.senderWalletAddress;
-  if (walletAddress.startsWith("$"))
+  let accessToken = input.accessToken;
+  let manageUrl = input.manageUrl;
+  let receiverWalletAddress = input.receiver_wallet;
+
+  if (walletAddress.startsWith("$")) {
     walletAddress = walletAddress.replace("$", "https://");
+  }
 
   console.log(">> Creating outgoing payment");
   console.log(input);
 
   // TODO: Get the grant since it was still pending
-  const grant: PendingGrant | Grant | undefined = (await client.grant.continue(
-    {
-      accessToken: input.continueAccessToken,
-      url: input.continueUri,
-    },
-    {
-      interact_ref: input.interactRef,
-    },
-  )) as Grant;
+  if (input.continueUri) {
+    const grant: PendingGrant | Grant | undefined = (await client.grant.continue(
+      {
+        accessToken: input.continueAccessToken,
+        url: input.continueUri,
+      },
+      {
+        interact_ref: input.interactRef,
+      },
+    )) as Grant;
+    accessToken = grant.access_token.value;
+    manageUrl = grant.access_token.manage;
 
-  console.log("<< Outgoing payment grant");
-  console.log(grant);
-
-  if (grant && isPendingGrant(grant)) {
-    throw new Error("Expected non-interactive grant");
-  }
-
-  // TODO: create outgoing payment
-
-  // hardcoded value
-  let access_token = "1149E4164D0F358C2804";
-  let manage_url =
-    "https://auth.interledger-test.dev/token/f1e055e9-3b7f-4201-864f-0d1b30ac107d";
-
-  const outgoingPayment = await client.outgoingPayment.create(
+    const outgoingPayment = await client.outgoingPayment.create(
     // hardcoded access_token
     {
       url: new URL(walletAddress).origin,
-      accessToken: grant.access_token.value,
+      accessToken: accessToken, // OUTGOING_PAYMENT_ACCESS_TOKEN,
       // accessToken: access_token,
     },
     {
       walletAddress: walletAddress,
-      incomingPayment: input.quoteId,
+      incomingPayment: input.incomingPayment, // This is incomming payment URL
       // quoteId: input.quoteId,
-      debitAmount: {
-        value: "5",
-        assetCode: "EUR",
-        assetScale: 2,
-      },
+      quoteId: input.quote_id,
+      // debitAmount: input.debitAmount, // This is from quote
     },
   );
+    console.log("<< Outgoing payment created");
+    console.log(outgoingPayment);
+    console.log(accessToken);
+    console.log(manageUrl);
 
-  console.log("<< Outgoing payment created");
-  console.log(outgoingPayment);
+    return [outgoingPayment, accessToken, manageUrl];
+  } else {
+    // If no continueUri is provided, we assume the accessToken is already available
+    console.log("No continueUri provided, rotating access token");
+    
+ 
+    // create outgoing authorization grant
+    const outgoingPaymentResponse = await processSubscriptionPayment(
+      client!,
+      {
+        receiverWalletAddress,
+        manageUrl,
+        accessToken,
+        amount:input.amount,
+      },
+    );
+    
+    accessToken = outgoingPaymentResponse[1];
+    manageUrl = outgoingPaymentResponse[2];
 
-  return outgoingPayment;
+      console.log("<< Outgoing payment created");
+      console.log(outgoingPaymentResponse);
+      console.log(accessToken);
+      console.log(manageUrl);
+
+      return [outgoingPaymentResponse, accessToken, manageUrl];
+  }
+  
+
+  // console.log("<< Outgoing payment grant");
+  // console.log(grant);
+
+  // if (grant && isPendingGrant(grant)) {
+  //   throw new Error("Expected non-interactive grant");
+  // }
+
+  // TODO: create outgoing payment
+
+  // hardcoded value
+  // let access_token = "1149E4164D0F358C2804";
+  // let manage_url =
+  //   "https://auth.interledger-test.dev/token/f1e055e9-3b7f-4201-864f-0d1b30ac107d";
 }
 
 /**
@@ -342,8 +382,8 @@ export async function processSubscriptionPayment(
     limits?: components["schemas"]["limits-outgoing"];
   }[];
 
-  const receiveAmount = (tokenAccessDetails[0].limits as any).receiveAmount
-    ?.value;
+  // const receiveAmount = (tokenAccessDetails[0].limits as any).receiveAmount
+  //   ?.value;
 
   const { walletAddressDetails: receiverWalletAddressDetails } =
     await getWalletAddressInfo(client, input.receiverWalletAddress);
@@ -359,7 +399,7 @@ export async function processSubscriptionPayment(
   // create incoming payment
   const incomingPayment = await createIncomingPayment(
     client,
-    receiveAmount!,
+    input.amount,
     receiverWalletAddressDetails,
   );
 
@@ -383,7 +423,7 @@ export async function processSubscriptionPayment(
       },
     );
 
-    return outgoingPayment;
+    return [outgoingPayment, token.access_token.value, token.access_token.manage];
   } catch (error) {
     console.log(error);
     throw new Error("Error creating subscription outgoing payment");
