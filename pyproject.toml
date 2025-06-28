@@ -10,4 +10,5 @@ dependencies = [
     "django-stubs>=5.2.1",
     "djangorestframework>=3.16.0",
     "markdown>=3.8.2",
+    "requests>=2.32.4",
 ]

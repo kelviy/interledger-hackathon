@@ -215,11 +215,8 @@ export async function createOutgoingPaymentPendingGrant(
             type: "outgoing-payment",
             actions: ["list", "list-all", "read", "read-all", "create"],
             limits: {
-              debitAmount: {
-                assetCode: debitAmount.assetCode,
-                assetScale: debitAmount.assetScale,
-                value: debitAmount.value,
-              },
+              receiveAmount,
+              debitAmount,
             },
           },
         ],
@@ -284,14 +281,27 @@ export async function createOutgoingPayment(
 
   // TODO: create outgoing payment
 
+  // hardcoded value
+  let access_token = "1149E4164D0F358C2804";
+  let manage_url =
+    "https://auth.interledger-test.dev/token/f1e055e9-3b7f-4201-864f-0d1b30ac107d";
+
   const outgoingPayment = await client.outgoingPayment.create(
+    // hardcoded access_token
     {
       url: new URL(walletAddress).origin,
-      accessToken: grant.access_token.value,
+      // accessToken: grant.access_token.value,
+      accessToken: access_token,
     },
     {
       walletAddress: walletAddress,
-      quoteId: input.quoteId,
+      incomingPayment: input.quoteId,
+      // quoteId: input.quoteId,
+      debitAmount: {
+        value: "1",
+        assetCode: "EUR",
+        assetScale: 2,
+      },
     },
   );
 

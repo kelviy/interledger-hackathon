@@ -107,20 +107,40 @@ app.post("/api/payment", async (req: Request, res: Response): Promise<any> => {
     continueUri: auth.continue.uri,
   };
 
-  res.redirect(auth.interact.redirect);
+  return res.json({
+    interact_redirect: auth.interact.redirect,
+    quoteId: quote.id,
+    incoming_payment_id: incoming.id,
+    continueAccessToken: auth.continue.access_token.value,
+    continueUri: auth.continue.uri,
+  });
 });
 
-app.get("/api/payment-auth", async (req, res): Promise<any> => {
-  const interactRef = req.query.interact_ref as string;
-  if (!interactRef) {
-    return res.status(400).send("Missing interact_ref");
-  }
-
-  // Pull your pending state back out of the session
-  const flow = req.session.paymentFlow;
-  if (!flow) {
-    return res.status(400).send("No pending payment flow in session");
-  }
+app.post("/api/create-payment", async (req, res): Promise<any> => {
+  const {
+    interactRef,
+    continue_access_token,
+    continueuri,
+    amount,
+    sender_wallet,
+    quote_id,
+  } = req.body;
+  // if (
+  //   !interactRef ||
+  //   !continue_access_token ||
+  //   !continueuri ||
+  //   !amount ||
+  //   !sender_wallet ||
+  //   !quote_id
+  // ) {
+  //   console.log(interactRef);
+  //   console.log(continue_access_token);
+  //   console.log(continueuri);
+  //   console.log(amount);
+  //   console.log(sender_wallet);
+  //   console.log(quote_id);
+  //   return res.status(400).json({ error: "Missing required fields" });
+  // }
 
   // Re-init the client
   const client = await getAuthenticatedClient();
@@ -132,15 +152,14 @@ app.get("/api/payment-auth", async (req, res): Promise<any> => {
   const outgoing = await createOutgoingPayment(
     client,
     {
-      senderWalletAddress: flow.senderWalletAddress,
-      continueAccessToken: flow.continueAccessToken,
-      interactRef, // from the auth server callback
-      continueUri: flow.continueUri,
-      quoteId: flow.quoteId,
+      senderWalletAddress: sender_wallet,
+      continueAccessToken: continue_access_token,
+      interactRef: interactRef, // from the auth server callback
+      continueUri: continueuri,
+      quoteId: quote_id,
     },
     // you can re-fetch sendDetails or stash it in the session if you like
-    (await getWalletAddressInfo(client, flow.senderWalletAddress))
-      .walletAddressDetails,
+    (await getWalletAddressInfo(client, sender_wallet)).walletAddressDetails,
   );
 
   // Done!  You can now show them the result.
