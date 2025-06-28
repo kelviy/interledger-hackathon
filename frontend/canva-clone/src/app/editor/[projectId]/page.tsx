@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { Loader, TriangleAlert } from "lucide-react";
-
+import { SessionProvider } from "@/features/editor/components/SessionContext";
 import { useGetProject } from "@/features/projects/api/use-get-project";
 
 import { Editor } from "@/features/editor/components/editor";
 import { Button } from "@/components/ui/button";
-import { SessionProvider } from "@/features/editor/components/SessionContext";
+
 
 
 interface EditorProjectIdPageProps {
@@ -55,5 +55,5 @@ const EditorProjectIdPage = ({
   </SessionProvider>
 )
 };
- 
+
 export default EditorProjectIdPage;
