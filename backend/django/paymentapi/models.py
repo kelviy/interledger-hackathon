@@ -15,3 +15,8 @@ class Payment(models.Model):
     name = models.CharField(max_length=30)
     amount = models.IntegerField()
     time = models.DateTimeField()
+
+class Grant(models.Model):
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True,blank=True)# ← allow NULL for now
+    token = models.CharField(max_length=30)
+    hash_url = models.CharField(max_length=30)
