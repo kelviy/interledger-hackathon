@@ -71,7 +71,10 @@ export const Navbar = ({
   const [showBudgetOverlay, setShowBudgetOverlay] = useState(false);
   const [budgetAmountAvailable, setBudgetAmountAvailable] = useState(1);
   const [budgetDepleted, setBudgetDepleted] = useState(false);
-  const {isPremium, setIsPremium} = useSessionEditor();
+  const {isPremium,setIsPremium, 
+    sessionBudget, remainingBudget, 
+    setSessionBudget, setRemainingBudget, 
+  } = useSessionEditor();
   const toggleEdit = () => setEditing((prev) => !prev);
   const increment = () => setAmount((prev) => prev + 1);
   const decrement = () => setAmount((prev) => (prev > 1 ? prev - 1 : 1));
@@ -99,14 +102,13 @@ export const Navbar = ({
   // track budget amount
 
   useEffect(() => {
-    if (budgetAmountAvailable <= 0) {
-      handlePaymentEnd();
-      if (isPremium)
-        setBudgetDepleted(true)
-  } else{
-      setBudgetDepleted(false);
+  if (remainingBudget <= 0) {
+    handlePaymentEnd();
+    if (isPremium) setBudgetDepleted(true);
+  } else {
+    setBudgetDepleted(false);
   }
-}, [budgetAmountAvailable]);
+}, [remainingBudget, isPremium]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
@@ -115,6 +117,8 @@ export const Navbar = ({
 
   const handleCloseDropdown = () => {
     setBudgetAmountAvailable(amount);
+    setSessionBudget(amount);
+    setRemainingBudget(amount);
     setEditing(false);
     setDropdownOpen(false);
   };
@@ -125,12 +129,16 @@ export const Navbar = ({
 
   const handleCloseBudgetOverlay = () => {
     setBudgetAmountAvailable(amount);
+    setSessionBudget(amount);
+    setRemainingBudget(amount);
     setEditing(false);
     setShowBudgetOverlay(false);
   };
 
   const handleConfirmBudgetFromOverlay = () => {
     setBudgetAmountAvailable(amount);
+    setSessionBudget(amount);
+    setRemainingBudget(amount);
     setEditing(false);
     setShowBudgetOverlay(false);
   };
@@ -239,7 +247,7 @@ export const Navbar = ({
               <div className="text-xs text-muted-foreground font-bold">
                 Balance:
               </div>
-              <span className="font-medium">${budgetAmountAvailable}</span>
+              <span className="font-medium">R{remainingBudget}</span>
             </div>
             
             {/* Budget Dropdown */}
@@ -358,9 +366,8 @@ export const Navbar = ({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          <Timer></Timer>
-           <PaymentButton callBackStart = {handlePaymentStart} callBackEnd={handlePaymentEnd}>
-          </PaymentButton>
+          <Timer />
+           <PaymentButton sessionId={id} callBackEnd={handlePaymentEnd} />
             {/* Demo button to test budget depletion - moved to navbar */}
             <Button 
               variant="destructive" 

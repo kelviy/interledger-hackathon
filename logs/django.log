@@ -1,5 +1,41 @@
 Watching for file changes with StatReloader
-Not Found: /
-[28/Jun/2025 22:12:11] "GET / HTTP/1.1" 404 2925
-Not Found: /favicon.ico
-[28/Jun/2025 22:12:11,905] - Broken pipe from ('127.0.0.1', 54352)
+[29/Jun/2025 17:14:39] "POST /request_session/ HTTP/1.1" 200 250
+[29/Jun/2025 17:14:53] "POST /request_session/ HTTP/1.1" 200 250
+[29/Jun/2025 17:15:12] "POST /request_session/ HTTP/1.1" 200 250
+[29/Jun/2025 17:15:12] "POST /create_session/ HTTP/1.1" 200 60
+[29/Jun/2025 17:15:12] "OPTIONS /payment/?session_id=151 HTTP/1.1" 200 0
+[29/Jun/2025 17:15:13] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:14] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:15] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:16] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:18] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:19] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:20] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:21] "GET /payment/?session_id=151 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:28] "POST /request_session/ HTTP/1.1" 200 250
+[29/Jun/2025 17:15:42] "POST /request_session/ HTTP/1.1" 200 250
+[29/Jun/2025 17:15:42] "POST /create_session/ HTTP/1.1" 200 60
+[29/Jun/2025 17:15:42] "OPTIONS /payment/?session_id=153 HTTP/1.1" 200 0
+[29/Jun/2025 17:15:42] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:43] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:44] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:45] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:47] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:48] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:49] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:50] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:51] "GET /payment/?session_id=153 HTTP/1.1" 200 88
+[29/Jun/2025 17:15:52] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:53] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:54] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:56] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:57] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:58] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:15:59] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:00] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:01] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:02] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:04] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:05] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:06] "GET /payment/?session_id=153 HTTP/1.1" 200 89
+[29/Jun/2025 17:16:07] "GET /payment/?session_id=153 HTTP/1.1" 200 89

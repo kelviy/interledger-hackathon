@@ -1,6 +1,7 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.views.decorators.http import require_POST
 from .serializers import GroupSerializer, UserSerializer
 from .models import Session, Payment, Product, Grant
 from django.utils import timezone
@@ -30,10 +31,13 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 # ---- endpoints ----
 @csrf_exempt
+@require_POST
 def request_session(request):
     # initialization
     request_payload = json.loads(request.body)
     product_name = request_payload.get("product_name")
+    client_redirect_url =request_payload.get("client_redirect_url")
+    print(client_redirect_url)
     print(product_name)
     product = Product.objects.get(name=product_name)
     json_response = {"product_name": product.name, "rate": product.rate}
@@ -54,7 +58,10 @@ def request_session(request):
     amount = product.rate
 
     url = "http://localhost:3001/api/payment/"
-    payload = {'senderWalletAddress': sender_wallet, 'receiverWalletAddress': receiver_wallet, 'amount': amount}
+    payload = {'senderWalletAddress': sender_wallet, 
+               'receiverWalletAddress': receiver_wallet, 
+               'amount': amount,
+               'clientRedirectUrl': client_redirect_url}
 
     response = requests.post(url, data=payload)
     response_data = response.json()
@@ -68,12 +75,16 @@ def request_session(request):
     grant.session = session 
     grant.save()
 
+    print(grant.continue_uri)
+    print(grant.continue_access)
+
     
     json_response["redirect_url"] = response_data["interact_redirect"]
     
     return JsonResponse(json_response)
 
 @csrf_exempt
+@require_POST
 def create_session(request):
 
     # initialization
@@ -91,6 +102,8 @@ def create_session(request):
     grant.save()
     print(hash_url)
     print(interact_ref)
+    print(grant.continue_uri)
+    print(grant.continue_access)
 
     return HttpResponse("Success. The session has been created and credentials stored", status=200)
 
@@ -143,6 +156,9 @@ def makeMicroPayment(session):
     manage_url = session.grant.manage_url
     receiver_wallet = "$ilp.interledger-test.dev/custom"
     amount = session.product.rate
+
+    print(continueuri)
+    print(continue_access_token)
 
     url = "http://localhost:3001/api/create-payment/"
     payload = {

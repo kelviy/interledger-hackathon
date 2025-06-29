@@ -62,8 +62,18 @@ app.get("/payment", (req: Request, res: Response) => {
 
 // get grant payment
 app.post("/api/payment", async (req: Request, res: Response): Promise<any> => {
-  const { senderWalletAddress, receiverWalletAddress, amount } = req.body;
-  if (!senderWalletAddress || !receiverWalletAddress || !amount) {
+  const {
+    senderWalletAddress,
+    receiverWalletAddress,
+    amount,
+    clientRedirectUrl,
+  } = req.body;
+  if (
+    !senderWalletAddress ||
+    !receiverWalletAddress ||
+    !amount ||
+    !clientRedirectUrl
+  ) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
@@ -91,7 +101,7 @@ app.post("/api/payment", async (req: Request, res: Response): Promise<any> => {
   // 4) Pending grant
   const auth = await createOutgoingPaymentPendingGrant(
     client,
-    { debitAmount: quote.debitAmount },
+    { debitAmount: quote.debitAmount, clientRedirectUrl: clientRedirectUrl },
     sendDetails,
   );
   if (!auth) {
@@ -143,15 +153,15 @@ app.post("/api/create-payment", async (req, res): Promise<any> => {
   ) {
     return res.status(400).json({ error: "Missing required fields" });
   }
-    console.log(interactRef);
-    console.log(debit_amount);
-    console.log(sender_wallet);
-    console.log(incommingPaymentUrl);
-    console.log(continueAccessToken);
-    console.log(continueUri);
-    console.log(quote_id);
-    console.log(manage_url);
-    console.log(receiver_wallet);
+  console.log(interactRef);
+  console.log(debit_amount);
+  console.log(sender_wallet);
+  console.log(incommingPaymentUrl);
+  console.log(continueAccessToken);
+  console.log(continueUri);
+  console.log(quote_id);
+  console.log(manage_url);
+  console.log(receiver_wallet);
 
   // Re-init the client
   const client = await getAuthenticatedClient();
@@ -179,7 +189,11 @@ app.post("/api/create-payment", async (req, res): Promise<any> => {
   );
 
   // Done!  You can now show them the result.
-  res.json({ token: outgoing[1], manage_url: outgoing[2], payment_details: outgoing[0]});
+  res.json({
+    token: outgoing[1],
+    manage_url: outgoing[2],
+    payment_details: outgoing[0],
+  });
 });
 
 // Health check endpoint
@@ -332,11 +346,7 @@ app.post(
 app.post(
   "/api/outgoing-payment",
   async (req: Request, res: Response): Promise<any> => {
-    const {
-      senderWalletAddress,
-      incommingPaymentUrl,
-      debitAmount,
-    } = req.body;
+    const { senderWalletAddress, incommingPaymentUrl, debitAmount } = req.body;
 
     if (!senderWalletAddress || !incommingPaymentUrl || !debitAmount) {
       return res.status(400).json({
@@ -351,14 +361,11 @@ app.post(
       const client = await getAuthenticatedClient();
 
       // create outgoing payment resource
-      const outgoingPaymentResponse = await createOutgoingPayment(
-        client!,
-        {
-          senderWalletAddress,
-          incommingPaymentUrl,
-          debitAmount,
-        },
-      );
+      const outgoingPaymentResponse = await createOutgoingPayment(client!, {
+        senderWalletAddress,
+        incommingPaymentUrl,
+        debitAmount,
+      });
 
       return res.status(200).json({ data: outgoingPaymentResponse });
     } catch (err: any) {

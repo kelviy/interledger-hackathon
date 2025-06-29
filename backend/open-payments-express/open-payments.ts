@@ -10,6 +10,7 @@ import {
 import { randomUUID } from "crypto";
 import { type components } from "@interledger/open-payments/dist/openapi/generated/auth-server-types";
 import { access } from "fs";
+import { error } from "console";
 
 dotenv.config({ path: ".env" });
 
@@ -219,10 +220,10 @@ export async function createOutgoingPaymentPendingGrant(
             limits: {
               // interval: interval,
               // receiveAmount,
-              debitAmount:{
-                "value":"100000",
-                "assetCode":"EUR",
-                "assetScale":2
+              debitAmount: {
+                value: "100000",
+                assetCode: "EUR",
+                assetScale: 2,
               },
             },
           },
@@ -232,7 +233,7 @@ export async function createOutgoingPaymentPendingGrant(
         start: ["redirect"],
         finish: {
           method: "redirect",
-          uri: "http://localhost:3001/api/payment-auth/",
+          uri: input.clientRedirectUrl,
           nonce: randomUUID(),
         },
       },
@@ -272,60 +273,58 @@ export async function createOutgoingPayment(
 
   console.log(">> Creating outgoing payment");
   console.log(input);
+  try {
 
-  // TODO: Get the grant since it was still pending
-  if (input.continueUri) {
-    const grant: PendingGrant | Grant | undefined = (await client.grant.continue(
-      {
-        accessToken: input.continueAccessToken,
-        url: input.continueUri,
-      },
-      {
-        interact_ref: input.interactRef,
-      },
-    )) as Grant;
-    accessToken = grant.access_token.value;
-    manageUrl = grant.access_token.manage;
+    // TODO: Get the grant since it was still pending
+    if (input.continueUri) {
+      const grant: PendingGrant | Grant | undefined =
+        (await client.grant.continue(
+          {
+            accessToken: input.continueAccessToken,
+            url: input.continueUri,
+          },
+          {
+            interact_ref: input.interactRef,
+          },
+        )) as Grant;
+      accessToken = grant.access_token.value;
+      manageUrl = grant.access_token.manage;
 
-    const outgoingPayment = await client.outgoingPayment.create(
-    // hardcoded access_token
-    {
-      url: new URL(walletAddress).origin,
-      accessToken: accessToken, // OUTGOING_PAYMENT_ACCESS_TOKEN,
-      // accessToken: access_token,
-    },
-    {
-      walletAddress: walletAddress,
-      incomingPayment: input.incomingPayment, // This is incomming payment URL
-      // quoteId: input.quoteId,
-      quoteId: input.quote_id,
-      // debitAmount: input.debitAmount, // This is from quote
-    },
-  );
-    console.log("<< Outgoing payment created");
-    console.log(outgoingPayment);
-    console.log(accessToken);
-    console.log(manageUrl);
+      const outgoingPayment = await client.outgoingPayment.create(
+        // hardcoded access_token
+        {
+          url: new URL(walletAddress).origin,
+          accessToken: accessToken, // OUTGOING_PAYMENT_ACCESS_TOKEN,
+          // accessToken: access_token,
+        },
+        {
+          walletAddress: walletAddress,
+          incomingPayment: input.incomingPayment, // This is incomming payment URL
+          // quoteId: input.quoteId,
+          quoteId: input.quote_id,
+          // debitAmount: input.debitAmount, // This is from quote
+        },
+      );
+      console.log("<< Outgoing payment created");
+      console.log(outgoingPayment);
+      console.log(accessToken);
+      console.log(manageUrl);
 
-    return [outgoingPayment, accessToken, manageUrl];
-  } else {
-    // If no continueUri is provided, we assume the accessToken is already available
-    console.log("No continueUri provided, rotating access token");
-    
- 
-    // create outgoing authorization grant
-    const outgoingPaymentResponse = await processSubscriptionPayment(
-      client!,
-      {
+      return [outgoingPayment, accessToken, manageUrl];
+    } else {
+      // If no continueUri is provided, we assume the accessToken is already available
+      console.log("No continueUri provided, rotating access token");
+
+      // create outgoing authorization grant
+      const outgoingPaymentResponse = await processSubscriptionPayment(client!, {
         receiverWalletAddress,
         manageUrl,
         accessToken,
-        amount:input.amount,
-      },
-    );
-    
-    accessToken = outgoingPaymentResponse[1];
-    manageUrl = outgoingPaymentResponse[2];
+        amount: input.amount,
+      });
+
+      accessToken = outgoingPaymentResponse[1];
+      manageUrl = outgoingPaymentResponse[2];
 
       console.log("<< Outgoing payment created");
       console.log(outgoingPaymentResponse);
@@ -333,9 +332,12 @@ export async function createOutgoingPayment(
       console.log(manageUrl);
 
       return [outgoingPaymentResponse, accessToken, manageUrl];
-  }
-  
+    }
 
+  } catch (error) {
+    console.log(error);
+  }
+  return ["error", "error", "error"];
   // console.log("<< Outgoing payment grant");
   // console.log(grant);
 
@@ -423,7 +425,11 @@ export async function processSubscriptionPayment(
       },
     );
 
-    return [outgoingPayment, token.access_token.value, token.access_token.manage];
+    return [
+      outgoingPayment,
+      token.access_token.value,
+      token.access_token.manage,
+    ];
   } catch (error) {
     console.log(error);
     throw new Error("Error creating subscription outgoing payment");

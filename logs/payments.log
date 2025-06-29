@@ -16,3 +16,1587 @@
   POST   /api/outgoing-payment-auth    - Get continuation grant for an outgoing payment on the sender's account
   POST   /api/outgoing-payment         - Create outgoing payment resource on sender's account
   POST   /api/subscription-payment     - Create an outgoing payment from an existing authorized recurring payment
+{
+  incomingPayment: {
+    get: [Function: get],
+    getPublic: [Function: getPublic],
+    create: [Function: create],
+    complete: [Function: complete],
+    list: [Function: list]
+  },
+  outgoingPayment: {
+    get: [Function: get],
+    list: [Function: list],
+    create: [Function: create]
+  },
+  walletAddress: {
+    get: [Function: get],
+    getKeys: [Function: getKeys],
+    getDIDDocument: [Function: getDIDDocument]
+  },
+  grant: {
+    request: [Function: request],
+    continue: [Function: continue],
+    cancel: [Function: cancel]
+  },
+  token: { rotate: [Function: rotate], revoke: [Function: revoke] },
+  quote: { get: [Function: get], create: [Function: create] }
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating Incoming Payment Resource
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Resource created
+{
+  id: 'https://ilp.interledger-test.dev/incoming-payments/18aa58db-057f-4975-910f-d6b035f7cb51',
+  walletAddress: 'https://ilp.interledger-test.dev/custom',
+  incomingAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  receivedAmount: { value: '0', assetCode: 'ZAR', assetScale: 2 },
+  completed: false,
+  createdAt: '2025-06-29T17:14:37.501Z',
+  updatedAt: '2025-06-29T17:14:37.501Z',
+  expiresAt: '2025-06-29T17:24:37.213Z',
+  methods: [
+    {
+      type: 'ilp',
+      ilpAddress: 'test.net.udOhBdMX-aP18dRRX3EDaDsWo_4wWzvRwwYPFi7MPPZY9rKtQrfR6XW6eFxkhkoDhBawTGNhoVrJh-DCiuUuKU-4-uytsqM',
+      sharedSecret: 'l4S-iPJGxZCkPFq0PUPf2-peyMZR3f3RUSzPxkFP4Xg'
+    }
+  ]
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating quoute
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Quote created
+{
+  id: 'https://ilp.interledger-test.dev/quotes/911d26db-6e01-4731-8a24-c7c64d008cca',
+  walletAddress: 'https://ilp.interledger-test.dev/csc',
+  receiveAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  receiver: 'https://ilp.interledger-test.dev/incoming-payments/18aa58db-057f-4975-910f-d6b035f7cb51',
+  expiresAt: '2025-06-29T17:19:39.131Z',
+  createdAt: '2025-06-29T17:14:39.132Z',
+  method: 'ilp'
+}
+>> Getting link to authorize outgoing payment grant request
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Pending outgoing grant obtained
+{
+  incomingPayment: {
+    get: [Function: get],
+    getPublic: [Function: getPublic],
+    create: [Function: create],
+    complete: [Function: complete],
+    list: [Function: list]
+  },
+  outgoingPayment: {
+    get: [Function: get],
+    list: [Function: list],
+    create: [Function: create]
+  },
+  walletAddress: {
+    get: [Function: get],
+    getKeys: [Function: getKeys],
+    getDIDDocument: [Function: getDIDDocument]
+  },
+  grant: {
+    request: [Function: request],
+    continue: [Function: continue],
+    cancel: [Function: cancel]
+  },
+  token: { rotate: [Function: rotate], revoke: [Function: revoke] },
+  quote: { get: [Function: get], create: [Function: create] }
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating Incoming Payment Resource
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Resource created
+{
+  id: 'https://ilp.interledger-test.dev/incoming-payments/1c30fb0f-f32f-43c0-a090-f37f9bcb5966',
+  walletAddress: 'https://ilp.interledger-test.dev/custom',
+  incomingAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  receivedAmount: { value: '0', assetCode: 'ZAR', assetScale: 2 },
+  completed: false,
+  createdAt: '2025-06-29T17:14:51.941Z',
+  updatedAt: '2025-06-29T17:14:51.941Z',
+  expiresAt: '2025-06-29T17:24:51.683Z',
+  methods: [
+    {
+      type: 'ilp',
+      ilpAddress: 'test.net.pmvppoG70YZTs3MLg2tHPJb7UF2tgxwQ4O7fZtNmscfJBrUeZMCDq7KnQjoPUIqgVEJGpYclV8ZTfizAIY7JyfJGKIbCens',
+      sharedSecret: 'QIsbz4opS7zg8E1_RmGQJz3YUKYoBX1LgjLjhz4c87Y'
+    }
+  ]
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating quoute
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Quote created
+{
+  id: 'https://ilp.interledger-test.dev/quotes/8311f953-2231-4486-8973-9c8d22996e00',
+  walletAddress: 'https://ilp.interledger-test.dev/csc',
+  receiveAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  receiver: 'https://ilp.interledger-test.dev/incoming-payments/1c30fb0f-f32f-43c0-a090-f37f9bcb5966',
+  expiresAt: '2025-06-29T17:19:53.124Z',
+  createdAt: '2025-06-29T17:14:53.125Z',
+  method: 'ilp'
+}
+>> Getting link to authorize outgoing payment grant request
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Pending outgoing grant obtained
+{
+  incomingPayment: {
+    get: [Function: get],
+    getPublic: [Function: getPublic],
+    create: [Function: create],
+    complete: [Function: complete],
+    list: [Function: list]
+  },
+  outgoingPayment: {
+    get: [Function: get],
+    list: [Function: list],
+    create: [Function: create]
+  },
+  walletAddress: {
+    get: [Function: get],
+    getKeys: [Function: getKeys],
+    getDIDDocument: [Function: getDIDDocument]
+  },
+  grant: {
+    request: [Function: request],
+    continue: [Function: continue],
+    cancel: [Function: cancel]
+  },
+  token: { rotate: [Function: rotate], revoke: [Function: revoke] },
+  quote: { get: [Function: get], create: [Function: create] }
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating Incoming Payment Resource
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Resource created
+{
+  id: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  walletAddress: 'https://ilp.interledger-test.dev/custom',
+  incomingAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  receivedAmount: { value: '0', assetCode: 'ZAR', assetScale: 2 },
+  completed: false,
+  createdAt: '2025-06-29T17:15:10.823Z',
+  updatedAt: '2025-06-29T17:15:10.823Z',
+  expiresAt: '2025-06-29T17:25:10.561Z',
+  methods: [
+    {
+      type: 'ilp',
+      ilpAddress: 'test.net.6BFl83IrAdEGnjGNggekTEUhbkvDjvuHyeV6tzyvlAe9t3S2ZM9b67i09bhdk1L2TvhaV_uyeI6JiSH2zIvcn-n1WTH8Vl4',
+      sharedSecret: 'tbMo-l8GvPukJvtDfaZywDml4k9HAURN1K3EsVdmXmM'
+    }
+  ]
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating quoute
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Quote created
+{
+  id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  walletAddress: 'https://ilp.interledger-test.dev/csc',
+  receiveAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  receiver: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  expiresAt: '2025-06-29T17:20:12.307Z',
+  createdAt: '2025-06-29T17:15:12.308Z',
+  method: 'ilp'
+}
+>> Getting link to authorize outgoing payment grant request
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Pending outgoing grant obtained
+9e0cf239-13ac-4a1d-a034-b2c5affa77b3
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+https://auth.interledger-test.dev/continue/d3f3c012-29a5-41a8-b807-74bdbc671c47
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: '9e0cf239-13ac-4a1d-a034-b2c5affa77b3',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: 'https://auth.interledger-test.dev/continue/d3f3c012-29a5-41a8-b807-74bdbc671c47',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: '',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+OpenPaymentsClientError: Error making Open Payments POST request
+    at handleError (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:141:11)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:281:10)
+    at async /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:20 {
+  description: 'grant not found',
+  status: 404,
+  code: 'invalid_continuation',
+  validationErrors: undefined
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4
+C9707FB7783C9A5D0995
+
+https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/474229bc-3ec0-4467-ab2a-5db6ac8a6dc4',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'C9707FB7783C9A5D0995',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/912e20fc-0727-4580-a064-ce12329f522f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+{
+  incomingPayment: {
+    get: [Function: get],
+    getPublic: [Function: getPublic],
+    create: [Function: create],
+    complete: [Function: complete],
+    list: [Function: list]
+  },
+  outgoingPayment: {
+    get: [Function: get],
+    list: [Function: list],
+    create: [Function: create]
+  },
+  walletAddress: {
+    get: [Function: get],
+    getKeys: [Function: getKeys],
+    getDIDDocument: [Function: getDIDDocument]
+  },
+  grant: {
+    request: [Function: request],
+    continue: [Function: continue],
+    cancel: [Function: cancel]
+  },
+  token: { rotate: [Function: rotate], revoke: [Function: revoke] },
+  quote: { get: [Function: get], create: [Function: create] }
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating Incoming Payment Resource
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Resource created
+{
+  id: 'https://ilp.interledger-test.dev/incoming-payments/edf574c6-8d56-459d-9fb4-ffec266bd3e6',
+  walletAddress: 'https://ilp.interledger-test.dev/custom',
+  incomingAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  receivedAmount: { value: '0', assetCode: 'ZAR', assetScale: 2 },
+  completed: false,
+  createdAt: '2025-06-29T17:15:26.838Z',
+  updatedAt: '2025-06-29T17:15:26.838Z',
+  expiresAt: '2025-06-29T17:25:26.536Z',
+  methods: [
+    {
+      type: 'ilp',
+      ilpAddress: 'test.net.PcnoYfFjgR8iC7hXq9NzPE7TQ7qQG3tUK4Zz87Bx-2hCbiaDXPkCdKEHB8g-h-83b8RENHrYRoml1OyQ-46Bl3idqiYAeMQ',
+      sharedSecret: 'ULO5VNeOz9_ub2G-ejdmAeDnRGE1U87Dx_D7E5oHnLM'
+    }
+  ]
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating quoute
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Quote created
+{
+  id: 'https://ilp.interledger-test.dev/quotes/d608e9b8-13df-44c3-9f09-c3b8adc806a5',
+  walletAddress: 'https://ilp.interledger-test.dev/csc',
+  receiveAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  receiver: 'https://ilp.interledger-test.dev/incoming-payments/edf574c6-8d56-459d-9fb4-ffec266bd3e6',
+  expiresAt: '2025-06-29T17:20:28.154Z',
+  createdAt: '2025-06-29T17:15:28.155Z',
+  method: 'ilp'
+}
+>> Getting link to authorize outgoing payment grant request
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Pending outgoing grant obtained
+{
+  incomingPayment: {
+    get: [Function: get],
+    getPublic: [Function: getPublic],
+    create: [Function: create],
+    complete: [Function: complete],
+    list: [Function: list]
+  },
+  outgoingPayment: {
+    get: [Function: get],
+    list: [Function: list],
+    create: [Function: create]
+  },
+  walletAddress: {
+    get: [Function: get],
+    getKeys: [Function: getKeys],
+    getDIDDocument: [Function: getDIDDocument]
+  },
+  grant: {
+    request: [Function: request],
+    continue: [Function: continue],
+    cancel: [Function: cancel]
+  },
+  token: { rotate: [Function: rotate], revoke: [Function: revoke] },
+  quote: { get: [Function: get], create: [Function: create] }
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating Incoming Payment Resource
+{
+  id: 'https://ilp.interledger-test.dev/custom',
+  publicName: 'custom',
+  assetCode: 'ZAR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Resource created
+{
+  id: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  walletAddress: 'https://ilp.interledger-test.dev/custom',
+  incomingAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  receivedAmount: { value: '0', assetCode: 'ZAR', assetScale: 2 },
+  completed: false,
+  createdAt: '2025-06-29T17:15:40.600Z',
+  updatedAt: '2025-06-29T17:15:40.600Z',
+  expiresAt: '2025-06-29T17:25:40.345Z',
+  methods: [
+    {
+      type: 'ilp',
+      ilpAddress: 'test.net.zfU2d1Iq7I8C2BW3lpH7hOOwYC7G608X1wr_BqnxZTMW4frKWpt7Y4n9fHlK5dAr-HzLd1s4mHMxsdBGXuZPbTqaIQe_hD4',
+      sharedSecret: 'enUls4qKtm6HivIGdODVJmSVsypvUU1grIHrbTzDEL0'
+    }
+  ]
+}
+<< Wallet address details
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+>> Creating quoute
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Quote created
+{
+  id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  walletAddress: 'https://ilp.interledger-test.dev/csc',
+  receiveAmount: { value: '100', assetCode: 'ZAR', assetScale: 2 },
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  receiver: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  expiresAt: '2025-06-29T17:20:41.731Z',
+  createdAt: '2025-06-29T17:15:41.732Z',
+  method: 'ilp'
+}
+>> Getting link to authorize outgoing payment grant request
+{
+  id: 'https://ilp.interledger-test.dev/csc',
+  publicName: 'europointer',
+  assetCode: 'EUR',
+  assetScale: 2,
+  authServer: 'https://auth.interledger-test.dev',
+  resourceServer: 'https://ilp.interledger-test.dev'
+}
+<< Pending outgoing grant obtained
+217fe6c4-006e-4134-8775-3518bf9ac571
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+https://auth.interledger-test.dev/continue/2fce61f2-4c49-4578-b517-6e35064c3ac3
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: '217fe6c4-006e-4134-8775-3518bf9ac571',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: 'https://auth.interledger-test.dev/continue/2fce61f2-4c49-4578-b517-6e35064c3ac3',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: '',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+OpenPaymentsClientError: Error making Open Payments POST request
+    at handleError (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:141:11)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:281:10)
+    at async /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:20 {
+  description: 'grant not found',
+  status: 404,
+  code: 'invalid_continuation',
+  validationErrors: undefined
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}
+error
+{ value: '5', assetCode: 'EUR', assetScale: 2 }
+https://ilp.interledger-test.dev/csc
+https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413
+D8B82828F04EABA63CD7
+
+https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f
+error
+$ilp.interledger-test.dev/custom
+>> Creating outgoing payment
+{
+  senderWalletAddress: 'https://ilp.interledger-test.dev/csc',
+  interactRef: 'error',
+  incommingPaymentUrl: 'https://ilp.interledger-test.dev/incoming-payments/8f672c3a-ea15-40c1-92e4-753596219413',
+  debitAmount: { value: '5', assetCode: 'EUR', assetScale: 2 },
+  continueAccessToken: 'D8B82828F04EABA63CD7',
+  continueUri: '',
+  quote_id: 'https://ilp.interledger-test.dev/quotes/4fb306b2-a7cb-4199-b529-f3a5e50fd41f',
+  manageUrl: 'error',
+  receiver_wallet: '$ilp.interledger-test.dev/custom',
+  amount: '100'
+}
+No continueUri provided, rotating access token
+TypeError: Invalid URL
+    at new URL (node:internal/url:816:29)
+    at checkUrlProtocol (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:150:24)
+    at post (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/requests.js:49:17)
+    at rotateToken (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:29:32)
+    at Object.rotate (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/node_modules/@interledger/open-payments/dist/client/token.js:22:51)
+    at processSubscriptionPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:368:36)
+    at createOutgoingPayment (/Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/open-payments.ts:319:45)
+    at /Users/mistycloud/Projects/interledger-hackathon/backend/open-payments-express/server.ts:173:47 {
+  code: 'ERR_INVALID_URL',
+  input: 'error'
+}

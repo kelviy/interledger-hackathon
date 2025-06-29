@@ -7,22 +7,126 @@
   - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 1727ms
- ✓ Compiled /src/middleware in 451ms (423 modules)
+ ✓ Ready in 2s
+ ✓ Compiled /src/middleware in 76ms
+ ✓ Compiled (423 modules)
+ ○ Compiling /api/[[...route]] ...
+ ✓ Compiled /api/[[...route]] in 760ms (405 modules)
+ ✓ Compiled (673 modules)
+ GET /api/auth/session 200 in 2543ms
+ GET /api/auth/session 200 in 511ms
+ GET /api/images 400 in 3329ms
+ GET /api/images 400 in 395ms
  ○ Compiling / ...
- ✓ Compiled / in 1641ms (1424 modules)
- GET / 200 in 2784ms
- ✓ Compiled in 1117ms (506 modules)
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 682ms (1187 modules)
- ✓ Compiled (1189 modules)
- GET /api/auth/session 200 in 2770ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 5ms
- GET /api/subscriptions/current 200 in 3347ms
- GET /api/projects/templates?page=1&limit=4 200 in 3351ms
- GET /api/projects?page=1&limit=5 200 in 3677ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 9ms
- GET /api/auth/session 200 in 27ms
-[?25h
+ ✓ Compiled / in 1897ms (1695 modules)
+ ✓ Compiled in 171ms (506 modules)
+ GET /?_rsc=1h7k7 200 in 168ms
+ GET /api/auth/session 200 in 7ms
+ GET /api/projects?page=1&limit=5 200 in 1142ms
+ ○ Compiling /editor/[projectId] ...
+ ✓ Compiled /editor/[projectId] in 2.5s (2989 modules)
+ ○ Compiling /api/uploadthing ...
+ GET /api/images 400 in 728ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 1101ms
+ ✓ Compiled /api/uploadthing in 1671ms (2277 modules)
+ GET /api/uploadthing 200 in 2662ms
+ GET /api/uploadthing 200 in 2643ms
+ GET /api/images 400 in 1079ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 2439ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 314ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 186ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 216ms
+ GET /api/images 400 in 333ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 193ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 167ms
+ GET /api/projects?page=1&limit=5 200 in 183ms
+ GET /api/auth/session 200 in 25ms
+ GET / 200 in 247ms
+ GET /api/auth/session 200 in 15ms
+ GET /api/projects?page=1&limit=5 200 in 566ms
+ GET /api/subscriptions/current 200 in 571ms
+ GET /api/projects/templates?page=1&limit=4 200 in 574ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 290ms
+ GET /api/uploadthing 200 in 38ms
+ GET /api/uploadthing 200 in 5ms
+ GET /api/projects/templates?limit=20&page=1 200 in 438ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 175ms
+ GET /api/images 400 in 922ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 172ms
+ GET /api/images 400 in 302ms
+ GET /api/images 400 in 308ms
+ GET /api/images 400 in 396ms
+ GET /api/auth/session 200 in 23ms
+ GET /api/images 400 in 469ms
+ GET /api/images 400 in 354ms
+ GET /api/images 400 in 312ms
+ GET /api/images 400 in 566ms
+(node:40254) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ GET /editor/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d?hash=Ahgkpvc1WhCI9B1y7pSwbFmGjWKW0CtK59Jgy%2BqbEso%3D&interact_ref=9e0cf239-13ac-4a1d-a034-b2c5affa77b3 200 in 1074ms
+ GET /api/auth/session 200 in 23ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 543ms
+ GET /api/uploadthing 200 in 6ms
+ GET /api/uploadthing 200 in 3ms
+ GET /api/subscriptions/current 200 in 191ms
+ GET /api/images 400 in 440ms
+ GET /api/projects/templates?limit=20&page=1 200 in 534ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 234ms
+ GET /api/projects/templates?page=1&limit=4 200 in 811ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 179ms
+ GET /api/images 400 in 316ms
+ GET /api/images 400 in 360ms
+ GET /api/images 400 in 543ms
+ GET /editor/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d?hash=LexOS95Kdk7LsnwcfT05k9QYn4m8kN4A%2BwoItDfW2%2B0%3D&interact_ref=217fe6c4-006e-4134-8775-3518bf9ac571 200 in 37ms
+ GET /api/auth/session 200 in 14ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 674ms
+ GET /api/uploadthing 200 in 7ms
+ GET /api/uploadthing 200 in 5ms
+ GET /api/subscriptions/current 200 in 202ms
+ GET /api/images 400 in 423ms
+ GET /api/projects/templates?limit=20&page=1 200 in 600ms
+ GET /api/projects/templates?page=1&limit=4 200 in 602ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 222ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 193ms
+ GET /api/images 400 in 357ms
+ GET /api/images 400 in 314ms
+ GET /api/images 400 in 381ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 956ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 189ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 411ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 206ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 411ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 191ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 922ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 175ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 353ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 174ms
+ PATCH /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 613ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 191ms
+ GET /api/auth/session 200 in 67ms
+ GET /api/images 400 in 490ms
+ GET /api/subscriptions/current 200 in 592ms
+ GET /api/projects/templates?limit=20&page=1 200 in 645ms
+ GET /api/projects/templates?page=1&limit=4 200 in 647ms
+ GET /api/images 400 in 306ms
+ GET /api/images 400 in 360ms
+ GET /api/auth/session 200 in 51ms
+ GET /api/images 400 in 727ms
+ GET /api/subscriptions/current 200 in 734ms
+ GET /api/projects/templates?limit=20&page=1 200 in 740ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 744ms
+ GET /api/projects/templates?page=1&limit=4 200 in 761ms
+ GET /api/auth/session 200 in 59ms
+ GET /api/images 400 in 1009ms
+ GET /api/projects/templates?limit=20&page=1 200 in 1493ms
+ GET /api/subscriptions/current 200 in 1628ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 2184ms
+ GET /api/projects/templates?page=1&limit=4 200 in 2193ms
+ GET /api/images 400 in 380ms
+ GET /api/auth/session 200 in 106ms
+ GET /api/images 400 in 482ms
+ GET /api/projects/4a43f8f3-9cbe-4b6e-a1ad-c9505b30954d 200 in 1045ms
+ GET /api/projects/templates?page=1&limit=4 200 in 1050ms
+ GET /api/projects/templates?limit=20&page=1 200 in 1782ms
+ GET /api/subscriptions/current 200 in 1791ms
+ GET /api/auth/session 200 in 33ms

@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+CORS_ALLOW_ALL_ORIGINS = True  
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'paymentapi.apps.PaymentapiConfig'
+    'paymentapi.apps.PaymentapiConfig',
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware"
 ]
 
 ROOT_URLCONF = 'siteapi.urls'
