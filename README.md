@@ -1,7 +1,7 @@
 # Interledger Hackathon
 Showcasing Pay-As-You-Go integration tool for expensive premium software. Making software more accessible and affordable for consumers. 
 
-The free tier is not always sufficient. To use premium features often requires monthly or yearly subscriptions. Pay-As-You-Go allows users to pay less for software that are used infrequently. Think about Adobe Photoshop, AI voice transcription... For companies, this means to expand the customer base. 
+The free tier is not always sufficient. To use premium features often requires monthly or yearly subscriptions. Pay-As-You-Go allows users to pay less for software that are used infrequently. Think about Adobe Photoshop, AI voice transcription... For companies, this means to expanding their customer base. 
 
 https://github.com/user-attachments/assets/87c5e1bf-470d-4e18-bd5d-56000fea507b
 
